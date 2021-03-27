@@ -7,8 +7,8 @@ namespace GameShop.Models
 {
     public class HardwareRequirements
     {
-        public int GameId { get; set; }
-
+        public int HardwareRequirementsId { get; set; }
+        
         public string System { get; set; }
         public string Processor { get; set; }
         public string Memory { get; set; }

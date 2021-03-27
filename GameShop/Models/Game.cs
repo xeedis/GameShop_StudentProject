@@ -9,6 +9,8 @@ namespace GameShop.Models
     public class Game
     {
         public int GameId { get; set; }
+
+        public int HardwareRequirementsId { get; set; }
         public int CategoryId { get; set; }
         [Required(ErrorMessage = "Enter the title of the game")]
         [StringLength(100)]
