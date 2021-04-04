@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameShop</title>
+    <link rel="stylesheet" href="./css/global.css">
+    <link rel="stylesheet" href="./css/cart.css">
+    <script src="https://kit.fontawesome.com/cd4d4653a2.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="topbar">
+        <div class="topbar__logo">
+            <h1 class="topbar__h1"><a href="./home.html">GameShop</a></h1>
+        </div>
+        <nav class="topbar__nav">
+            <ul class="topbar__list">
+                <li class="topbar__list-item"><a href="./shop.html">Sklep</a></li>
+                <li class="topbar__list-item"><a href="./home.html">O nas</a></li>
+                <li class="topbar__list-item list-item--login"><a href="./home.html">Zaloguj się</a></li>
+            </ul>
+        </nav>
+        <div class="topbar__cart-icon">
+            <a href="./cart.html"><i class="fas fa-shopping-cart"></i></a>
+        </div>
+    </div>
+    <header class="header">
+        <div class="header__cart-items-amount">
+            <p class="header__paragraph">W koszyku: 0</p>
+            <!-- example value, should changed when game added to cart -->
+        </div>
+    </header>
+    <main class="main">
+        <section class="cart">
+            <h2 class="cart__h2">Mój koszyk (3)</h2>
+            <div class="cart__content">
+                <ul class="cart__list">
+                    <li class="cart__list-item">
+                        <div class="cart__item-info">
+                            <p class="cart__paragraph cart__paragraph--title">Kingdom Come</p>
+                            <p class="cart__paragraph cart__paragraph--amount">1</p>
+                            <p class="cart__paragraph cart__paragraph--price">100 zł</p>
+                        </div>
+                        <button class="cart__remove-button">
+                            <p class="cart__paragraph cart__paragraph--remove-button">X</p>
+                        </button>
+                    </li>
+
+                    <!-- DELETE LATER (lines 50-71) -->
+                    <!-- FROM THIS LINE -->
+                    <li class="cart__list-item">
+                        <div class="cart__item-info">
+                            <p class="cart__paragraph cart__paragraph--title">Kingdom Come</p>
+                            <p class="cart__paragraph cart__paragraph--amount">1</p>
+                            <p class="cart__paragraph cart__paragraph--price">100 zł</p>
+                        </div>
+                        <button class="cart__remove-button">
+                            <p class="cart__paragraph cart__paragraph--remove-button">X</p>
+                        </button>
+                    </li><li class="cart__list-item">
+                        <div class="cart__item-info">
+                            <p class="cart__paragraph cart__paragraph--title">Kingdom Come</p>
+                            <p class="cart__paragraph cart__paragraph--amount">1</p>
+                            <p class="cart__paragraph cart__paragraph--price">100 zł</p>
+                        </div>
+                        <button class="cart__remove-button">
+                            <p class="cart__paragraph cart__paragraph--remove-button">X</p>
+                        </button>
+                    </li>
+                    <!-- TO THIS LINE -->
+
+                </ul>
+                <div class="cart__total-price">
+                    <p class="cart__paragraph">Razem do zapłaty: <span class="total-price">300 zł</span></p>
+                </div>
+            </div>
+            <button class="cart__paymant-button">
+                <p class="cart__paragraph">Wybierz sposób dostawy i płatność</p>
+            </button>
+        </section>
+    </main>
+    <footer class="footer">
+        <p class="footer__paragraph">&copy; 2020 GameShop, <a href="https://github.com/xeedis/GameShop_StudentProject" target="_blank">student project</a></p>
+    </footer>
+</body>
+</html>
