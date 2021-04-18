@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GameShop</title>
     <link rel="stylesheet" href="./css/global.css">
-    <link rel="stylesheet" href="./css/home.css">
+    <link rel="stylesheet" href="./css/login.css">
     <script src="https://kit.fontawesome.com/cd4d4653a2.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -25,27 +25,33 @@
             <a href="./cart.html"><i class="fas fa-shopping-cart"></i></a>
         </div>
     </div>
-    <header class="header">
-        <div class="header__cart-items-amount">
-            <p class="header__paragraph">W koszyku: 0</p>
-            <!-- example value, should changed when game added to cart -->
-        </div>
-    </header>
     <main class="main">
-        <section class="highlights">
-            <h2 class="highlights__h2">Wyróżnione w tym miesiącu</h2>
-            <div class="highlights__games">
-                <div class="highlights__game">
-                    <img src="./img/kingdomcome.jpeg" alt="Kingdom Come">
+        <section class="login">
+            <div class="wrapper fadeInDown">
+                <div id="formContent">
+                  <!-- Tabs Titles -->
+                  <h2 class="active"><a href="login.html">Sign In</a></h2>
+                  <h2 class="inactive underlineHover"><a href="register.html">Sign Up</a></h2>
+              
+                  <!-- Icon -->
+                  <div class="fadeIn first">
+                    <i class="fas fa-user"></i>
+                  </div>
+              
+                  <!-- Login Form -->
+                  <form>
+                    <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
+                    <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
+                    <input type="submit" class="fadeIn fourth last" value="Sign In">
+                  </form>
+              
+                  <!-- Remind Passowrd -->
+                  <div id="formFooter">
+                    <a class="underlineHover" href="#">Forgot Password?</a>
+                  </div>
+              
                 </div>
-                <div class="highlights__game">
-                    <img src="./img/gothic.jpg" alt="Gothic 2">
-                </div>
-                <div class="highlights__game">
-                    <img src="./img/cyberpunk.jpg" alt="Cyberpunk">
-                </div>
-            </div>
-            <!-- picture should redirect to game's info page -->
+              </div>
         </section>
     </main>
     <footer class="footer">
