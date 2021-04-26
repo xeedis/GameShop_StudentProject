@@ -18,7 +18,7 @@ namespace GameShop.Controllers
         {
             
             //var categoryList = db.Categories.ToList();
-            List<Game> popular = db.Games.Where(a=>a.Hidden).OrderByDescending(a=>a.Bestseller).Take(3).ToList();
+            List<Game> popular = db.Games.Where(a=>!a.Hidden).OrderByDescending(a=>a.Bestseller).Take(3).ToList();
 
             var vm = new HomeViewModel()
             {

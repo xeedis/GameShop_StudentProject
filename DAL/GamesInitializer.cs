@@ -36,8 +36,8 @@ namespace GameShop.DAL
             var games = new List<Game>
             {
               new Game() {GameId=1,HardwareRequirementsId=1,Publisher="CDprojectRed",CategoryId=1,GamePrice=64,GameTitle="Cyberpunk",DateAdded=Convert.ToDateTime("05-05-2020"),Premiere=Convert.ToDateTime("05-05-2020"),ImageFileName="cyberpunk.jpg"},
-              new Game() {GameId=2,HardwareRequirementsId=2,Publisher="safsfa",CategoryId=2,GameTitle="Kingdom Come",DateAdded=Convert.ToDateTime("05-05-2020"),Premiere=Convert.ToDateTime("05-05-2020"),ImageFileName="kingdomcome.jpg"},
-               new Game() {GameId=3,HardwareRequirementsId=2,Publisher="safsfa",CategoryId=2,GameTitle="Gothic 2",DateAdded=Convert.ToDateTime("05-05-2020"),Premiere=Convert.ToDateTime("05-05-2020"),ImageFileName="gothic.jpg"},
+              new Game() {GameId=2,HardwareRequirementsId=2,Publisher="safsfa",CategoryId=2,GameTitle="Kingdom Come",DateAdded=Convert.ToDateTime("05-05-2020"),Premiere=Convert.ToDateTime("05-05-2020"),ImageFileName="kingdomcome.jpeg"},
+              new Game() {GameId=3,HardwareRequirementsId=2,Publisher="safsfa",CategoryId=2,GameTitle="Gothic 2",DateAdded=Convert.ToDateTime("05-05-2020"),Premiere=Convert.ToDateTime("05-05-2020"),ImageFileName="gothic.jpg"},
             };
             games.ForEach(k => context.Games.AddOrUpdate(k));
             context.SaveChanges();
