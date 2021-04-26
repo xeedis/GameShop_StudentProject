@@ -1,0 +1,63 @@
+﻿@model GameShop.ViewModel.HomeViewModel
+    @using GameShop.Infrastructure
+   
+    
+@{ ViewBag.Title = "Index"; }
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameShop</title>
+    <link rel="stylesheet" href="~/Prototype/frontend-template/css/global.css">
+    <link rel="stylesheet" href="~/Prototype/frontend-template/css/home.css">
+    <script src="https://kit.fontawesome.com/cd4d4653a2.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="topbar">
+        <div class="topbar__logo">
+            <h1 class="topbar__h1"><a href="./home.html">GameShop</a></h1>
+        </div>
+        <nav class="topbar__nav">
+            <ul class="topbar__list">
+                <li class="topbar__list-item"><a href="./shop.html">Sklep</a></li>
+                <li class="topbar__list-item"><a href="./home.html">O nas</a></li>
+                <li class="topbar__list-item list-item--login"><a href="./login.html">Zaloguj się</a></li>
+            </ul>
+        </nav>
+        <div class="topbar__cart-icon">
+            <a href="./cart.html"><i class="fas fa-shopping-cart"></i></a>
+        </div>
+    </div>
+    <header class="header">
+        <div class="header__cart-items-amount">
+            <p class="header__paragraph">W koszyku: 0</p>
+            <!-- example value, should changed when game added to cart -->
+        </div>
+    </header>
+    <main class="main">
+        <section class="highlights">
+            <h2 class="highlights__h2">Wyróżnione w tym miesiącu</h2>
+            <div class="highlights__games">
+                @foreach (var popularGames in Model.Popular)
+                {
+
+                <div class="highlights__game">
+                    <img src="@Url.PathGames(popularGames.ImageFileName)" alt="@Url.PathGames(popularGames.GameTitle)">
+                </div>               
+                }
+            </div>
+            
+            <!-- picture should redirect to game's info page -->
+        </section>
+    </main>
+    <footer class="footer">
+        <p class="footer__paragraph">&copy; 2021 GameShop, <a href="https://github.com/xeedis/GameShop_StudentProject" target="_blank">student project</a></p>
+    </footer>
+</body>
+</html>
+
+<h2>Index</h2>
+

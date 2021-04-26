@@ -1,0 +1,23 @@
+.highlights__h2{
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 24px;
+    letter-spacing: 1px;
+}
+.highlights__games{
+    display: flex;
+    justify-content: space-around;
+    align-content: space-around;
+    flex-wrap: wrap;
+    padding: 25px 50px 30px 50px;
+}
+.highlights__game{
+    flex-basis: 30%;
+    min-width: 300px;
+    margin: 15px;
+    box-shadow: 0 0 30px 0 #000
+}
+.highlights__game img{
+    display: block;
+    width: 100%;
+}
