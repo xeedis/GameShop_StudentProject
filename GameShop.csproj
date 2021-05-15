@@ -117,6 +117,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="DAL\GameContext.cs" />
@@ -158,6 +159,7 @@
     <Content Include="Prototype\frontendTemplate\img\background-home" />
     <Content Include="Views\Home\AboutUs.cshtml" />
     <Content Include="Views\Store\Store.cshtml" />
+    <Content Include="Views\Cart\Cart.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
