@@ -1,4 +1,7 @@
-﻿
+﻿@model GameShop.ViewModel.CartViewModel
+    @using GameShop.Infrastructure
+@using System.Web
+
 @{
     Layout = null;
 }
@@ -15,77 +18,110 @@
     <script src="https://kit.fontawesome.com/cd4d4653a2.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="topbar">
-        <div class="topbar__logo">
-            <h1 class="topbar__h1"><a href="./home.html">GameShop</a></h1>
-        </div>
-        <nav class="topbar__nav">
-            <ul class="topbar__list">
-                <li class="topbar__list-item"><a href="./shop.html">Sklep</a></li>
-                <li class="topbar__list-item"><a href="./home.html">O nas</a></li>
-                <li class="topbar__list-item list-item--login"><a href="./login.html">Zaloguj się</a></li>
-            </ul>
-        </nav>
-        <div class="topbar__cart-icon">
-            <a href="./cart.html"><i class="fas fa-shopping-cart"></i></a>
-        </div>
-    </div>
-    <header class="header">
-        <div class="header__cart-items-amount">
-            <p class="header__paragraph">W koszyku: 0</p>
-            <!-- example value, should changed when game added to cart -->
-        </div>
-    </header>
-    <main class="main">
-        <section class="cart">
-            <h2 class="cart__h2">Mój koszyk (3)</h2>
-            <div class="cart__content">
-                <ul class="cart__list">
-                    <li class="cart__list-item">
-                        <div class="cart__item-info">
-                            <p class="cart__paragraph cart__paragraph--title">Kingdom Come</p>
-                            <p class="cart__paragraph cart__paragraph--amount">1</p>
-                            <p class="cart__paragraph cart__paragraph--price">100 zł</p>
-                        </div>
-                        <button class="cart__remove-button">
-                            <p class="cart__paragraph cart__paragraph--remove-button">X</p>
-                        </button>
-                    </li>
+    <table>
+        <tr>
+            <th>Book</th>
+            <th>Quantity</th>
+            <th>Sub Total</th>
+        </tr>
+        @foreach (var cartItem in Model.CartItem)
+        {
+            <tr id="cart-row-@cartItem.game.GameId">
+                <td>
+                    <a href=""> </a>
+                    <div class="cart-info">
+                        <img src="@Url.Content("~/Prototype/frontendTemplate/img/" + cartItem.game.ImageFileName)" alt="">
+                        <div>
+                            <p>@cartItem.game.GameId</p>
 
-                    <!-- DELETE LATER (lines 50-71) -->
-                    <!-- FROM THIS LINE -->
-                    <li class="cart__list-item">
-                        <div class="cart__item-info">
-                            <p class="cart__paragraph cart__paragraph--title">Kingdom Come</p>
-                            <p class="cart__paragraph cart__paragraph--amount">1</p>
-                            <p class="cart__paragraph cart__paragraph--price">100 zł</p>
+                            <br>
+                            <a class="removeBook" data-id="@cartItem.game.GameId" href="#">Remove</a>
                         </div>
-                        <button class="cart__remove-button">
-                            <p class="cart__paragraph cart__paragraph--remove-button">X</p>
-                        </button>
-                    </li>
-                    <li class="cart__list-item">
-                        <div class="cart__item-info">
-                            <p class="cart__paragraph cart__paragraph--title">Kingdom Come</p>
-                            <p class="cart__paragraph cart__paragraph--amount">1</p>
-                            <p class="cart__paragraph cart__paragraph--price">100 zł</p>
-                        </div>
-                        <button class="cart__remove-button">
-                            <p class="cart__paragraph cart__paragraph--remove-button">X</p>
-                        </button>
-                    </li>
-                    <!-- TO THIS LINE -->
+                    </div>
+                </td>
+                <td><span id="cart-quantity-item-@cartItem.game.GameId"><input value="@cartItem.Quantity" readonly></span> </td>
+                <td>@String.Format("{0:0.##}", cartItem.Value)</td>
+            </tr>
+        }
 
-                </ul>
-                <div class="cart__total-price">
-                    <p class="cart__paragraph">Razem do zapłaty: <span class="total-price">300 zł</span></p>
+
+        <tr id="cart-empty-message" @if (Model.CartItem != null && Model.CartItem.Count > 0) { <text > class="hidden" </text> }>
+
+            <td>
+                <div class="cart-info">
+                    <h1> <br>Your cart is empty </h1>
                 </div>
-            </div>
-            <button class="cart__paymant-button">
-                <p class="cart__paragraph">Wybierz sposób dostawy i płatność</p>
-            </button>
-        </section>
-    </main>
+            </td>
+
+        </tr>
+
+    </table>
+
+
+    <div class="total-price">
+        <table>
+            <tr>
+                <td>Sub Total</td>
+                <td><span id="total-price-value">@String.Format("{0:0.##}", Model.TotalPrice)zł</span></td>
+            </tr>
+
+
+        </table>
+    </div>
+
+
+    @if (Model.TotalPrice > 0)
+    {
+        <div class="button_container">
+            <a class="ButtonLink" id="cart-button-pay" href="@Url.Action("Pay","Cart")"></a>
+            <button class="btn"><span>Pay</span> </button>
+        </div>
+    }
+
+
+    <div class="button_container">
+        <a class="ButtonLink" id="cart-button-pay" href="index.htm"> </a>
+        <button class="btn2"><span>Conntinue</span></button>
+
+    </div>
+
+
+
+    @section Scripts
+    {
+       
+        <script type="text/javascript">
+            $(function () {
+                $(".removeBook").click(function () {
+                    var RecordToDelete = $(this).attr("data-id");
+
+                    if (RecordToDelete != '') {
+                        $.post("/Cart/RemoveFromCart", { "bookId": RecordToDelete },
+                            function (response) {
+                                if (response.NumberItemsToRemove == 0) {
+                                    $('#cart-row-' + response.IdItemsToRemove).fadeOut('slow',
+                                        function () {
+                                            if (response.CartQuantityItem == 0) {
+                                                $("#cart-empty-message").removeClass("hidden");
+                                            }
+                                        });
+                                }
+                                else {
+                                    $('#cart-quantity-item-' + response.IdItemsToRemove).text(response.NumberItemsToRemove);
+                                }
+                                if (response.CartTotalPrice == 0) {
+                                    $('#cart-button-pay').addClass('hidden');
+                                    $('#total-price').addClass('invisible');
+                                }
+                                $('#total-price-value').text(response.CartTotalPrice);
+                                $('#cart-heading-quantity-items').text(response.CartQuantityItem);
+                            });
+                        return false;
+                    }
+                });
+            });
+        </script>
+    }
     <footer class="footer">
         <p class="footer__paragraph">&copy; 2020 GameShop, <a href="https://github.com/xeedis/GameShop_StudentProject" target="_blank">student project</a></p>
     </footer>

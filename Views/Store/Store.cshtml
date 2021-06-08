@@ -24,7 +24,7 @@
             </ul>
         </nav>
         <div class="topbar__cart-icon">
-            <a href="./cart.html"><i class="fas fa-shopping-cart"></i></a>
+            <a href="@Url.Action("Cart","Cart")"><i class="fas fa-shopping-cart"></i></a>
         </div>
     </div>
     <header class="header">
@@ -78,13 +78,18 @@
                         <div class="games__list-item__info">
                             <p class="games__list-item__title">@games.GameTitle</p>
                             <p class="games__list-item__price">@games.GamePrice.ToString()</p>
+
                         </div>
-                        <div class="games__list-item__add-button"><i class="fas fa-cart-plus"></i></div>
-                        <!-- add game to cart when button clicked -->
-                        <!-- click on element (list-item) or only picture should redirect to game's info page -->
+                        <h1>
+                            @games.GameTitle - @games.category
+                            <a href="@Url.Action("AddToCart","Cart", new { id = games.GameId })"></a>
+
+                            <div class="games__list-item__add-button"><i class="fas fa-cart-plus"> </i></div>
+                        </h1>
+                            <!-- click on element (list-item) or only picture should redirect to game's info page -->
                     </div>
 
-                    }
+                   }
 
                 </div>
             </section>
