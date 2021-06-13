@@ -16,112 +16,104 @@
     <link rel="stylesheet" href="~/Prototype/frontendTemplate/css/global.css">
     <link rel="stylesheet" href="~/Prototype/frontendTemplate/css/cart.css">
     <script src="https://kit.fontawesome.com/cd4d4653a2.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        .hidden{
+            display:none;
+        }
+        .cart__paragraph{
+            display: block;
+        }
+    </style>
+    <script type="text/javascript" defer>
+        console.log("script się odpalił", @Model.CartItem.Count);
+        var delCount = 0;
+        var itemCount = @Model.CartItem.Count;
+
+        $(".header__paragraph").text('W koszyku: ' + itemCount);
+
+        $(function () {
+            $(".cart__remove-button").click(function () {
+                var RecordToDelete = $(this).attr("data-id");
+                console.log("usunięto gre");
+
+                if (RecordToDelete != '') {
+                    $.post("/Cart/RemoveFromCart", { "bookId": RecordToDelete },
+                        function (response) {
+                            if (response.NumberItemsToRemove == 0) {
+                                $('#cart-row-' + response.IdItemsToRemove).fadeOut('slow',
+                                    function () {
+                                        if (response.CartQuantityItem == 0) {
+                                            $("#cart-empty-message").removeClass("hidden");
+                                        }
+                                    });
+                            }
+                            else {
+                                $('#cart-quantity-item-' + response.IdItemsToRemove).text(response.NumberItemsToRemove);
+                            }
+                            if (response.CartTotalPrice == 0) {
+                                $('#cart-button-pay').addClass('hidden');
+                                $('#total-price').addClass('invisible');
+                            }
+                            $('#total-price-value').text(response.CartTotalPrice + ' zł');
+                            $('#cart-heading-quantity-items').text(response.CartQuantityItem);    
+                        });
+                    document.location.reload();
+                    return false;
+                }
+            });
+        });
+    </script>
 </head>
 <body>
-    <table>
-        <tr>
-            <th>Book</th>
-            <th>Quantity</th>
-            <th>Sub Total</th>
-        </tr>
-        @foreach (var cartItem in Model.CartItem)
-        {
-            <tr id="cart-row-@cartItem.game.GameId">
-                <td>
-                    <a href=""> </a>
-                    <div class="cart-info">
-                        <img src="@Url.Content("~/Prototype/frontendTemplate/img/" + cartItem.game.ImageFileName)" alt="">
-                        <div>
-                            <p>@cartItem.game.GameId</p>
-
-                            <br>
-                            <a class="removeBook" data-id="@cartItem.game.GameId" href="#">Remove</a>
-                        </div>
-                    </div>
-                </td>
-                <td><span id="cart-quantity-item-@cartItem.game.GameId"><input value="@cartItem.Quantity" readonly></span> </td>
-                <td>@String.Format("{0:0.##}", cartItem.Value)</td>
-            </tr>
-        }
-
-
-        <tr id="cart-empty-message" @if (Model.CartItem != null && Model.CartItem.Count > 0) { <text > class="hidden" </text> }>
-
-            <td>
-                <div class="cart-info">
-                    <h1> <br>Your cart is empty </h1>
-                </div>
-            </td>
-
-        </tr>
-
-    </table>
-
-
-    <div class="total-price">
-        <table>
-            <tr>
-                <td>Sub Total</td>
-                <td><span id="total-price-value">@String.Format("{0:0.##}", Model.TotalPrice)zł</span></td>
-            </tr>
-
-
-        </table>
-    </div>
-
-
-    @if (Model.TotalPrice > 0)
-    {
-        <div class="button_container">
-            <a class="ButtonLink" id="cart-button-pay" href="@Url.Action("Pay","Cart")"></a>
-            <button class="btn"><span>Pay</span> </button>
+    <div class="topbar">
+        <div class="topbar__logo">
+            <h1 class="topbar__h1"><a href="@Url.Action("Index","Home")">GameShop</a></h1>
         </div>
-    }
-
-
-    <div class="button_container">
-        <a class="ButtonLink" id="cart-button-pay" href="index.htm"> </a>
-        <button class="btn2"><span>Conntinue</span></button>
-
+        <nav class="topbar__nav">
+            <ul class="topbar__list">
+                <li class="topbar__list-item"><a href="@Url.Action("Store","Store")">Sklep</a></li>
+                <li class="topbar__list-item"><a href="@Url.Action("StaticPages","Home", new { name = "AboutUs"})">O nas</a></li>
+                <li class="topbar__list-item list-item--login"><a href="./login.html">Zaloguj się</a></li>
+            </ul>
+        </nav>
+        <div class="topbar__cart-icon">
+            <a href="@Url.Action("Cart","Cart")"><i class="fas fa-shopping-cart"></i></a>
+        </div>
     </div>
-
-
-
-    @section Scripts
-    {
-       
-        <script type="text/javascript">
-            $(function () {
-                $(".removeBook").click(function () {
-                    var RecordToDelete = $(this).attr("data-id");
-
-                    if (RecordToDelete != '') {
-                        $.post("/Cart/RemoveFromCart", { "bookId": RecordToDelete },
-                            function (response) {
-                                if (response.NumberItemsToRemove == 0) {
-                                    $('#cart-row-' + response.IdItemsToRemove).fadeOut('slow',
-                                        function () {
-                                            if (response.CartQuantityItem == 0) {
-                                                $("#cart-empty-message").removeClass("hidden");
-                                            }
-                                        });
-                                }
-                                else {
-                                    $('#cart-quantity-item-' + response.IdItemsToRemove).text(response.NumberItemsToRemove);
-                                }
-                                if (response.CartTotalPrice == 0) {
-                                    $('#cart-button-pay').addClass('hidden');
-                                    $('#total-price').addClass('invisible');
-                                }
-                                $('#total-price-value').text(response.CartTotalPrice);
-                                $('#cart-heading-quantity-items').text(response.CartQuantityItem);
-                            });
-                        return false;
+    <header class="header">
+        <div class="header__cart-items-amount">
+            <p class="header__paragraph">W koszyku: @Model.CartItem.Count</p>
+        </div>
+    </header>
+    <main class="main">
+        <section class="cart">
+            <h2 class="cart__h2">Mój koszyk (<span id="itemCountC">@Model.CartItem.Count</span>)</h2>
+            <div class="cart__content">
+                <ul class="cart__list">
+                    @foreach (var cartItem in Model.CartItem)
+                    {
+                        <li id="cart-row-@cartItem.game.GameId" class="cart__list-item">
+                            <div class="cart__item-info">
+                                <p class="cart__paragraph cart__paragraph--title">@cartItem.game.GameTitle</p>
+                                <p id="cart-quantity-item-@cartItem.game.GameId" class="cart__paragraph cart__paragraph--amount">@cartItem.Quantity</p>
+                                <p class="cart__paragraph cart__paragraph--price">@String.Format("{0:0.##}", cartItem.Value) zł</p>
+                            </div>
+                            <button class="cart__remove-button" data-id="@cartItem.game.GameId">
+                                <p class="cart__paragraph cart__paragraph--remove-button">X</p>
+                            </button>
+                        </li>
                     }
-                });
-            });
-        </script>
-    }
+                </ul>
+                <div class="cart__total-price">
+                    <p class="cart__paragraph">Razem do zapłaty: <span id="total-price-value" class="total-price">@String.Format("{0:0.##}", Model.TotalPrice) zł</span></p>
+                </div>
+            </div>
+            <button class="cart__paymant-button">
+                <a href="@Url.Action("Pay","Cart")" id="cart-button-pay" class="cart__paragraph">Wybierz sposób dostawy i płatność</a>
+            </button>
+        </section>
+    </main>
     <footer class="footer">
         <p class="footer__paragraph">&copy; 2020 GameShop, <a href="https://github.com/xeedis/GameShop_StudentProject" target="_blank">student project</a></p>
     </footer>
