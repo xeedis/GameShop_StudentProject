@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameShop</title>
+    <link rel="stylesheet" href="./css/global.css">
+    <link rel="stylesheet" href="./css/shop.css">
+    <script src="https://kit.fontawesome.com/cd4d4653a2.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="topbar">
+        <div class="topbar__logo">
+            <h1 class="topbar__h1"><a href="./home.html">GameShop</a></h1>
+        </div>
+        <nav class="topbar__nav">
+            <ul class="topbar__list">
+                <li class="topbar__list-item"><a href="./shop.html">Sklep</a></li>
+                <li class="topbar__list-item"><a href="./home.html">O nas</a></li>
+                <li class="topbar__list-item list-item--login"><a href="./login.html">Zaloguj się</a></li>
+            </ul>
+        </nav>
+        <div class="topbar__cart-icon">
+            <a href="./cart.html"><i class="fas fa-shopping-cart"></i></a>
+        </div>
+    </div>
+    <header class="header">
+        <div class="header__cart-items-amount">
+            <p class="header__paragraph">W koszyku: 0</p>
+            <!-- example value, should changed when game added to cart -->
+        </div>
+    </header>
+    <main class="main">
+        <section class="shop-content">
+            <div class="side-panel">
+                <div class="side-panel__game-type">
+                    <div class="side-panel__tab-name">Gatunek</div>
+                    <ul class="game-type__list">
+                        <li class="game-type__list-item">RPG</li>
+                        <li class="game-type__list-item">Akcji</li>
+                        <li class="game-type__list-item">Symulatory</li>
+                        <li class="game-type__list-item">Wyścigi</li>
+                        <li class="game-type__list-item">Strategie</li>
+                        <li class="game-type__list-item">Strzelanki</li>
+                    </ul>
+                </div>
+                <div class="side-panel__game-price">
+                    <div class="side-panel__tab-name">Cena</div>
+                    <p class="game-price__paragraph">0 <input type="range" name="game-price" id="game-price" min="0" max="500" step="5"> 500</p>
+                    <p class="game-price__paragraph">Szukaj gier do 250zł</p>
+                    <!-- example value, should change with input value -->
+                </div>
+                <div class="side-panel__game-languages">
+                    <div class="side-panel__tab-name">Język</div>
+                    <ul class="game-languages__list">
+                        <li class="game-languages__list-item"><label><input type="checkbox" name="pl"><span>Polski</span></label></li>
+                        <li class="game-languages__list-item"><label><input type="checkbox" name="en"><span>Angielski</span></label></li>
+                        <li class="game-languages__list-item"><label><input type="checkbox" name="fr"><span>Francuski</span></label></li>
+                        <li class="game-languages__list-item"><label><input type="checkbox" name="ru"><span>Rosyjski</span></label></li>
+                    </ul>
+                </div>
+            </div>
+            <section class="games">
+                <div class="games__search">
+                    <input type="text" name="game-search" id="game-search" placeholder="Szukaj gry..">
+                    <button class="games__search-button">Wyszukaj</button>
+                </div>
+                <div class="games__list">
+                    <!-- example values, should get from database (img, title, price) -->
+                    <!-- games list items should be created with loop based on database records -->
+                    <div class="games__list-item">
+                        <img src="./img/kingdomcome.jpeg" alt="Kingdom Come" class="games__list-item__img">
+                        <div class="games__list-item__info">
+                            <p class="games__list-item__title">Game title</p>
+                            <p class="games__list-item__price">100zł</p>
+                        </div>
+                        <div class="games__list-item__add-button"><i class="fas fa-cart-plus"></i></div>
+                        <!-- add game to cart when button clicked -->
+                        <!-- click on element (list-item) or only picture should redirect to game's info page -->
+                    </div>
+
+                    <!-- DELETE LATER (lines 83-165) -->
+                    <!-- FROM THIS LINE -->
+                    <div class="games__list-item">
+                        <img src="./img/kingdomcome.jpeg" alt="Kingdom Come" class="games__list-item__img">
+                        <div class="games__list-item__info">
+                            <p class="games__list-item__title">Game title</p>
+                            <p class="games__list-item__price">100zł</p>
+                        </div>
+                        <div class="games__list-item__add-button"><i class="fas fa-cart-plus"></i></div>
+                        <!-- add game to cart when button clicked -->
+                        <!-- click on item-list should redirect to game's info page -->
+                    </div>
+                    <div class="games__list-item">
+                        <img src="./img/kingdomcome.jpeg" alt="Kingdom Come" class="games__list-item__img">
+                        <div class="games__list-item__info">
+                            <p class="games__list-item__title">Game title</p>
+                            <p class="games__list-item__price">100zł</p>
+                        </div>
+                        <div class="games__list-item__add-button"><i class="fas fa-cart-plus"></i></div>
+                        <!-- add game to cart when button clicked -->
+                        <!-- click on item-list should redirect to game's info page -->
+                    </div>
+                    <div class="games__list-item">
+                        <img src="./img/kingdomcome.jpeg" alt="Kingdom Come" class="games__list-item__img">
+                        <div class="games__list-item__info">
+                            <p class="games__list-item__title">Game title</p>
+                            <p class="games__list-item__price">100zł</p>
+                        </div>
+                        <div class="games__list-item__add-button"><i class="fas fa-cart-plus"></i></div>
+                        <!-- add game to cart when button clicked -->
+                        <!-- click on item-list should redirect to game's info page -->
+                    </div>
+                    <div class="games__list-item">
+                        <img src="./img/kingdomcome.jpeg" alt="Kingdom Come" class="games__list-item__img">
+                        <div class="games__list-item__info">
+                            <p class="games__list-item__title">Game title</p>
+                            <p class="games__list-item__price">100zł</p>
+                        </div>
+                        <div class="games__list-item__add-button"><i class="fas fa-cart-plus"></i></div>
+                        <!-- add game to cart when button clicked -->
+                        <!-- click on item-list should redirect to game's info page -->
+                    </div>
+                    <div class="games__list-item">
+                        <img src="./img/kingdomcome.jpeg" alt="Kingdom Come" class="games__list-item__img">
+                        <div class="games__list-item__info">
+                            <p class="games__list-item__title">Game title</p>
+                            <p class="games__list-item__price">100zł</p>
+                        </div>
+                        <div class="games__list-item__add-button"><i class="fas fa-cart-plus"></i></div>
+                        <!-- add game to cart when button clicked -->
+                        <!-- click on item-list should redirect to game's info page -->
+                    </div>
+                    <div class="games__list-item">
+                        <img src="./img/kingdomcome.jpeg" alt="Kingdom Come" class="games__list-item__img">
+                        <div class="games__list-item__info">
+                            <p class="games__list-item__title">Game title</p>
+                            <p class="games__list-item__price">100zł</p>
+                        </div>
+                        <div class="games__list-item__add-button"><i class="fas fa-cart-plus"></i></div>
+                        <!-- add game to cart when button clicked -->
+                        <!-- click on item-list should redirect to game's info page -->
+                    </div>
+                    <div class="games__list-item">
+                        <img src="./img/kingdomcome.jpeg" alt="Kingdom Come" class="games__list-item__img">
+                        <div class="games__list-item__info">
+                            <p class="games__list-item__title">Game title</p>
+                            <p class="games__list-item__price">100zł</p>
+                        </div>
+                        <div class="games__list-item__add-button"><i class="fas fa-cart-plus"></i></div>
+                        <!-- add game to cart when button clicked -->
+                        <!-- click on item-list should redirect to game's info page -->
+                    </div>
+                    <div class="games__list-item">
+                        <img src="./img/kingdomcome.jpeg" alt="Kingdom Come" class="games__list-item__img">
+                        <div class="games__list-item__info">
+                            <p class="games__list-item__title">Game title</p>
+                            <p class="games__list-item__price">100zł</p>
+                        </div>
+                        <div class="games__list-item__add-button"><i class="fas fa-cart-plus"></i></div>
+                        <!-- add game to cart when button clicked -->
+                        <!-- click on item-list should redirect to game's info page -->
+                    </div>
+                    <!-- TO THIS LINE -->
+
+                </div>
+            </section>
+        </section>
+        <p class="page-number">Strona 1 z 1</p>
+    </main>
+    <footer class="footer">
+        <p class="footer__paragraph">&copy; 2020 GameShop, <a href="https://github.com/xeedis/GameShop_StudentProject" target="_blank">student project</a></p>
+    </footer>
+</body>
+</html>
