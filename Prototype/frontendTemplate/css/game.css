@@ -51,6 +51,7 @@
 .game__desc{
   font-size: 25px;
   border-bottom: 1px solid rgb(160, 160, 160);
+  margin-bottom: 15px;
 }
 .game__paragraph{
   font-size: 17px;
