@@ -20,7 +20,7 @@
             <ul class="topbar__list">
                 <li class="topbar__list-item"><a href="@Url.Action("Store","Store")">Sklep</a></li>
                 <li class="topbar__list-item"><a href="@Url.Action("StaticPages","Home", new { name = "AboutUs"})">O nas</a></li>
-                <li class="topbar__list-item list-item--login"><a href="./login.html">Zaloguj się</a></li>
+                <li class="topbar__list-item list-item--login"><a href="@Url.Action("Login","Account")">Zaloguj się</a></li>
             </ul>
         </nav>
         <div class="topbar__cart-icon">
