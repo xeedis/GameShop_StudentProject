@@ -5,6 +5,7 @@ using System.Web;
 
 namespace GameShop.Models
 {
+    //ja tu ni panimajam
     public class CartItem
     {
         public Game game { get; set; }

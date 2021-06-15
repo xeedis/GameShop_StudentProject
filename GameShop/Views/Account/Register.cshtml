@@ -1,0 +1,70 @@
+﻿@model GameShop.ViewModel.RegisterViewModel
+@using GameShop.Infrastructure
+@using System.Web
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameShop</title>
+    <link rel="stylesheet" href="~/Prototype/frontendTemplate/css/global.css">
+    <link rel="stylesheet" href="~/Prototype/frontendTemplate/css/login.css">
+    <script src="https://kit.fontawesome.com/cd4d4653a2.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="topbar">
+        <div class="topbar__logo">
+            <h1 class="topbar__h1"><a href="@Url.Action("Index","Home")">GameShop</a></h1>
+        </div>
+        <nav class="topbar__nav">
+            <ul class="topbar__list">
+                <li class="topbar__list-item"><a href="@Url.Action("Store","Store")">Sklep</a></li>
+                <li class="topbar__list-item"><a href="./home.html">O nas</a></li>
+                <li class="topbar__list-item list-item--login"><a href="@Url.Action("Login","Account")">Zaloguj się</a></li>
+            </ul>
+        </nav>
+        <div class="topbar__cart-icon">
+            <a href="./cart.html"><i class="fas fa-shopping-cart"></i></a>
+        </div>
+    </div>
+    <main class="main">
+        <section class="login">
+            <div class="wrapper fadeInDown">
+                <div id="formContent">
+                    <!-- Tabs Titles -->
+                    <h2 class="inactive underlineHover"><a href="@Url.Action("Login","Account")">Sign In</a></h2>
+                    <h2 class="active"><a href="register.html">Sign Up</a></h2>
+
+                    <!-- Icon -->
+                    <div class="fadeIn first">
+                        <i class="fas fa-user"></i>
+                    </div>
+
+                    <!-- Login Form -->
+                    <form>
+                        <input type="text" id="login" class="fadeIn second" name="login" placeholder="login" required>
+                        <input type="email" id="email" class="fadeIn third" name="email" placeholder="email" required>
+                        <input type="text" id="password" class="fadeIn fourth" name="password" placeholder="haslo" required>
+                        <input type="submit" class="fadeIn fifth last" value="Zarejestruj">
+                    </form>
+
+                    <!-- Remind Passowrd -->
+                    <div id="formFooter">
+                        <a class="underlineHover" href="#">Przypomnij Haslo?</a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <p class="footer__paragraph">&copy; 2020 GameShop, <a href="https://github.com/xeedis/GameShop_StudentProject" target="_blank">student project</a></p>
+    </footer>
+</body>
+</html>

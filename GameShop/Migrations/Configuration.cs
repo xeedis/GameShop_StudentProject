@@ -11,7 +11,7 @@
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "GameShop.BooksContext";
+            ContextKey = "GameShop.DAL.GamesContext";
         }
 
         protected override void Seed(GameShop.DAL.GameContext context)

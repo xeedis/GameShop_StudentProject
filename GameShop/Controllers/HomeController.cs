@@ -1,5 +1,6 @@
 ﻿using GameShop.DAL;
 using GameShop.Models;
+using GameShop.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,11 +13,23 @@ namespace GameShop.Controllers
     {
         private GameContext db = new GameContext();
         // GET: Home
+        
         public ActionResult Index()
         {
-            var categoryList = db.Categories.ToList();
+            
+            //var categoryList = db.Categories.ToList();
+            List<Game> popular = db.Games.Where(a=>!a.Hidden).OrderByDescending(a=>a.Bestseller).Take(3).ToList();
 
-            return View();
+            var vm = new HomeViewModel()
+            {
+                Popular = popular
+            };
+            return View(vm);
+        }
+
+        public ActionResult StaticPages(string name)
+        {
+            return View(name);
         }
     }
 }
