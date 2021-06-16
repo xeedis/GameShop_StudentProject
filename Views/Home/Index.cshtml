@@ -24,8 +24,9 @@
             <ul class="topbar__list">
                 <li class="topbar__list-item"><a href="@Url.Action("Store","Store")">Sklep</a></li>
                 <li class="topbar__list-item"><a href="@Url.Action("StaticPages","Home", new { name = "AboutUs"})">O nas</a></li>
-                <li class="topbar__list-item list-item--login"><a href="./login.html">Zaloguj się</a></li>
+                <li class="topbar__list-item list-item--login"><a href="@Url.Action("Login","Account")">Zaloguj się</a></li>
             </ul>
+            @Html.Partial("_LoginPartial")
         </nav>
         <div class="topbar__cart-icon">
             <a href="@Url.Action("Cart","Cart")"><i class="fas fa-shopping-cart"></i></a>
@@ -33,7 +34,7 @@
     </div>
     <header class="header">
         <div class="header__cart-items-amount">
-            <p class="header__paragraph">W koszyku: 0</p>
+            <p class="header__paragraph">W koszyku: @Html.Action("DownloadNumberOfCartItems","Cart")</p>
             <!-- example value, should changed when game added to cart -->
         </div>
     </header>
@@ -45,7 +46,9 @@
                 {
 
                 <div class="highlights__game">
-                    <img src="@Url.PathGames(popularGames.ImageFileName)" alt="@Url.PathGames(popularGames.GameTitle)">
+                    <a href="@Url.Action("Details", "Game", new { id = popularGames.GameId })">
+                        <img src="@Url.PathGames(popularGames.ImageFileName)" alt="@Url.PathGames(popularGames.GameTitle)">
+                        </a>
                 </div>               
                 }
             </div>

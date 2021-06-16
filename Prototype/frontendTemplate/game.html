@@ -1,0 +1,96 @@
+
+
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GameShop</title>
+  <link rel="stylesheet" href="./css/global.css">
+  <link rel="stylesheet" href="./css/game.css">
+  <script src="https://kit.fontawesome.com/cd4d4653a2.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="topbar__logo">
+      <h1 class="topbar__h1"><a href="@Url.Action(" Index","Home")">GameShop</a></h1>
+    </div>
+    <nav class="topbar__nav">
+      <ul class="topbar__list">
+        <li class="topbar__list-item"><a href="@Url.Action(" Store","Store")">Sklep</a></li>
+        <li class="topbar__list-item"><a href="@Url.Action(" StaticPages","Home", new { name="AboutUs" })">O nas</a>
+        </li>
+        <li class="topbar__list-item list-item--login"><a href="./login.html">Zaloguj się</a></li>
+      </ul>
+    </nav>
+    <div class="topbar__cart-icon">
+      <a href="@Url.Action(" Cart","Cart")"><i class="fas fa-shopping-cart"></i></a>
+    </div>
+  </div>
+  <header class="header">
+    <div class="header__cart-items-amount">
+      <p class="header__paragraph">W koszyku: @Html.Action("DownloadNumberOfCartItems","Cart")</p>
+      <!-- example value, should changed when game added to cart -->
+    </div>
+  </header>
+  <main class="main">
+    <section class="game">
+      <section class="game__summary">
+        <div class="game__summary-line">
+          <h2 class="game__name">Cyberpunk 2077</h2> <!-- in Game.cs GameTitle -->
+          <p class="game__rating">&#9733;4/5</p> <!-- in Game.cs Rating -->
+          <button class="game__add-to-cart-button">Dodaj do koszyka w cenie 200zł</button> <!-- redirect to cart -->
+          <!-- prawdopodobnie tak to powinno wyglądać po dodaniu C# -->
+          <!-- <a href="@Url.Action("AddToCart","Cart", new { id = games.GameId })"><button class="game__add-to-cart-button">Dodaj do koszyka w cenie 200zł</button></a> -->
+        </div>
+        <div class="game__summary-line game__summary-line--second">
+          <p class="game__publisher game__summary-paragraph"><span class="game__p-span">Wydawca: </span>CD PROJEKT RED</p> <!-- in Game.cs Publisher -->
+          <p class="game__type game__summary-paragraph"><span class="game__p-span">Gatunek: </span>Akcji</p> <!-- in Game.cs Type -->
+          <p class="game__premiere game__summary-paragraph"><span class="game__p-span">Data premiery: </span>01.01.2000</p> <!-- in Game.cs Premiere -->
+        </div>
+      </section>
+      <section class="game__description">
+        <h3 class="game__desc">Opis</h3>
+        <p class="game__paragraph">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis maxime iure
+          esse quasi debitis illum, doloremque soluta qui praesentium quaerat necessitatibus deserunt illo ipsum
+          adipisci corrupti, repellat ex sed quis amet veniam blanditiis aliquam reprehenderit sequi natus? Laborum
+          atque, saepe et dicta voluptatibus iure voluptate aliquid mollitia ut exercitationem! Sed reiciendis possimus
+          incidunt iure laboriosam error, at accusantium aut, cupiditate quam aspernatur ea unde et, dignissimos alias?
+          Fugiat minus reprehenderit, ullam necessitatibus explicabo tempora cum dicta numquam hic possimus perferendis,
+          sed voluptas maxime modi vitae illum impedit velit consequuntur cumque totam omnis labore corrupti commodi?
+          Doloribus totam earum recusandae architecto quo minus eveniet, cum illum repudiandae quasi, eos doloremque
+          deleniti dolore dignissimos vel similique culpa at ipsum veniam quis eaque reiciendis. Quae sequi id nisi iure
+          a itaque, eligendi dolorem deleniti, alias libero cupiditate laudantium velit sed voluptatibus quibusdam
+          fugiat. Repellat non, veritatis nesciunt quam porro voluptates illum laboriosam rem repudiandae consequuntur
+          explicabo. Unde vel natus voluptatibus nobis, harum officiis vero quisquam, repudiandae porro totam fugit qui?
+          Nemo, a? Enim recusandae officia, architecto suscipit, aperiam consequatur vel tempore deserunt minus ducimus
+          quod odio velit animi aut consequuntur quaerat voluptatem obcaecati, maxime similique sapiente minima. Facere
+          nam consequatur nesciunt maiores fugiat perferendis sapiente, voluptas tenetur eaque quidem quos sit non
+          laboriosam architecto facilis natus possimus vitae est amet recusandae. Veritatis ea eveniet quas,
+          consequuntur provident laborum, ipsa animi recusandae nisi maxime quos dicta id amet quibusdam, ratione
+          deleniti delectus cupiditate odio fugiat dolores quod incidunt quidem minus accusamus. Iure ullam molestias
+          quisquam. In veritatis nesciunt, tenetur similique illum dolore maxime laborum officiis maiores nihil error
+          modi, esse magnam odio optio, id recusandae facilis reprehenderit delectus consequuntur. Sed nobis, non nihil
+          vitae reprehenderit laudantium asperiores! Excepturi sunt omnis quae pariatur amet eius itaque consequuntur
+          ducimus, hic numquam praesentium, tempore doloribus. Nulla, nobis.</p> <!-- in Game.cs GameDescription -->
+      </section>
+
+
+      <!-- Jeżeli chcemy dodać też sekcje z wymaganiami sprzętowymi to dodaj po prostu zmienne z tymi danymi, a ja je później wsadze w HTML i CSS -->
+      <!-- Jeżeli nie to usuń poniższą sekcje game__requirements -->
+      <section class="game__requirements">
+
+      </section>
+
+    </section>
+  </main>
+  <footer class="footer">
+    <p class="footer__paragraph">&copy; 2021 GameShop, <a href="https://github.com/xeedis/GameShop_StudentProject"
+        target="_blank">student project</a></p>
+  </footer>
+</body>
+
+</html>

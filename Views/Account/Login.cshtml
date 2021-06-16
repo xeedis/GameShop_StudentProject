@@ -2,10 +2,16 @@
 @using GameShop.Infrastructure
 @using System.Web
 
-@{
-    Layout = null;
+@{ Layout = null; }
+@section Scripts
+{
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 }
-
+@{
+    ViewBag.Title = "Login";
+}
 
 <!DOCTYPE html>
 <html lang="pl">
@@ -18,53 +24,75 @@
     <link rel="stylesheet" href="~/Prototype/frontendTemplate/css/login.css">
     <script src="https://kit.fontawesome.com/cd4d4653a2.js" crossorigin="anonymous"></script>
 </head>
-<body>
-    <div class="topbar">
-        <div class="topbar__logo">
-            <h1 class="topbar__h1"><a href="@Url.Action("Index","Home")">GameShop</a></h1>
-        </div>
-        <nav class="topbar__nav">
-            <ul class="topbar__list">
-                <li class="topbar__list-item"><a href="@Url.Action("Store","Store")">Sklep</a></li>
-                <li class="topbar__list-item"><a href="./home.html">O nas</a></li>
-                <li class="topbar__list-item list-item--login"><a href="@Url.Action("Login","Account")">Zaloguj się</a></li>
-            </ul>
-        </nav>
-        <div class="topbar__cart-icon">
-            <a href="./cart.html"><i class="fas fa-shopping-cart"></i></a>
-        </div>
-    </div>
-    <main class="main">
-        <section class="login">
-            <div class="wrapper fadeInDown">
-                <div id="formContent">
-                    <!-- Tabs Titles -->
-                    <h2 class="active"><a href="login.html">Sign In</a></h2>
-                    <h2 class="inactive underlineHover"><a href="@Url.Action("Register","Account")">Sign Up</a></h2>
-
-                    <!-- Icon -->
-                    <div class="fadeIn first">
-                        <i class="fas fa-user"></i>
+@using (@Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+{
+@Html.AntiForgeryToken()
+                <body>
+                    <div class="topbar">
+                        <div class="topbar__logo">
+                            <h1 class="topbar__h1"><a href="@Url.Action("Index", "Home")">GameShop</a></h1>
+                        </div>
+                        <nav class="topbar__nav">
+                            <ul class="topbar__list">
+                                <li class="topbar__list-item"><a href="@Url.Action("Store", "Store")">Sklep</a></li>
+                                <li class="topbar__list-item"><a href="./home.html">O nas</a></li>
+                                <li class="topbar__list-item list-item--login"><a href="@Url.Action("Login", "Account")">Zaloguj się</a></li>
+                            </ul>
+                        </nav>
+                        <div class="topbar__cart-icon">
+                            <a href="@Url.Action("Cart", "Cart")"><i class="fas fa-shopping-cart"></i></a>
+                        </div>
                     </div>
+                    <main class="main">
+                        <section class="login">
+                            <div class="wrapper fadeInDown">
+                                <div id="formContent">
+                                    <!-- Tabs Titles -->
+                                    <h2 class="active"><a href="@Url.Action("Login", "Account")">Sign In</a></h2>
+                                    <h2 class="inactive underlineHover"><a href="@Url.Action("Register", "Account")">Sign Up</a></h2>
 
-                    <!-- Login Form -->
-                    <form>
-                        <input type="text" id="login" class="fadeIn second" name="login" placeholder="login" required>
-                        <input type="text" id="password" class="fadeIn third" name="password" placeholder="haslo" required>
-                        <input type="submit" class="fadeIn fourth last" value="Zaloguj">
-                    </form>
+                                    <!-- Icon -->
+                                    <div class="fadeIn first">
+                                        <i class="fas fa-user"></i>
+                                    </div>
 
-                    <!-- Remind Passowrd -->
-                    <div id="formFooter">
-                        <a class="underlineHover" href="#">Przypomnij Haslo?</a>
-                    </div>
+                                    <!-- Login Form -->
+                                    <form>
+                                        <tr>
+                                            <td>@Html.LabelFor(model => model.Email, "E-mail:")</td>
+                                            <td>@Html.TextBoxFor(model => model.Email)
+                                                <div class="login-validation-message">
+                                                    @Html.ValidationMessageFor(model => model.Email)
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>@Html.LabelFor(model => model.Password, "Hasło:")</td>
+                                            <td>@Html.PasswordFor(model => model.Password)
+                                                <div class="login-validation-message">
+                                                    @Html.ValidationMessageFor(model => model.Password)
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <input type="submit" class="fadeIn fourth last" value="Zaloguj">
+                                            </td>
+                                        </tr>
+                                    </form>
 
-                </div>
-            </div>
-        </section>
-    </main>
-    <footer class="footer">
-        <p class="footer__paragraph">&copy; 2020 GameShop, <a href="https://github.com/xeedis/GameShop_StudentProject" target="_blank">student project</a></p>
-    </footer>
-</body>
+                                    <!-- Remind Passowrd 
+                                    <div id="formFooter">
+                                        <a class="underlineHover" href="#">Przypomnij Haslo?</a>
+                                    </div> -->
+
+                                </div>
+                            </div>
+                        </section>
+                    </main>
+                    <footer class="footer">
+                        <p class="footer__paragraph">&copy; 2020 GameShop, <a href="https://github.com/xeedis/GameShop_StudentProject" target="_blank">student project</a></p>
+                    </footer>
+                </body>
+}
 </html>

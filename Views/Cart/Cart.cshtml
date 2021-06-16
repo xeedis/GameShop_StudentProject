@@ -38,7 +38,7 @@
                 console.log("usunięto gre");
 
                 if (RecordToDelete != '') {
-                    $.post("/Cart/RemoveFromCart", { "bookId": RecordToDelete },
+                    $.post("/Cart/RemoveFromCart", { "GameId": RecordToDelete },
                         function (response) {
                             if (response.NumberItemsToRemove == 0) {
                                 $('#cart-row-' + response.IdItemsToRemove).fadeOut('slow',
@@ -74,7 +74,7 @@
             <ul class="topbar__list">
                 <li class="topbar__list-item"><a href="@Url.Action("Store","Store")">Sklep</a></li>
                 <li class="topbar__list-item"><a href="@Url.Action("StaticPages","Home", new { name = "AboutUs"})">O nas</a></li>
-                <li class="topbar__list-item list-item--login"><a href="./login.html">Zaloguj się</a></li>
+                <li class="topbar__list-item list-item--login"><<a href="@Url.Action("Login","Account")">Zaloguj się</a></li>
             </ul>
         </nav>
         <div class="topbar__cart-icon">

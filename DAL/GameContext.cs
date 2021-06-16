@@ -1,4 +1,5 @@
 ﻿using GameShop.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -8,7 +9,7 @@ using System.Web;
 
 namespace GameShop.DAL
 {
-    public class GameContext : DbContext
+    public class GameContext : IdentityDbContext<ApplicationUser>
     {
         public GameContext() : base("GameContext")
         {
@@ -18,6 +19,10 @@ namespace GameShop.DAL
         static GameContext()
         {
             Database.SetInitializer<GameContext>(new GamesInitializer());
+        }
+        public static GameContext Create()
+        {
+            return new GameContext();
         }
         public DbSet<Game> Games { get; set; }
         public DbSet<Category> Categories { get; set; }

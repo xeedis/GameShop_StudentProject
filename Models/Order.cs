@@ -9,6 +9,8 @@ namespace GameShop.Models
     public class Order
     {
         public int OrderId { get; set; }
+        public string UserId { get; set; }
+        public virtual ApplicationUser User { get; set; }
         [Required(ErrorMessage = "Enter name")]
         [StringLength(50)]
         public string Name { get; set; }
@@ -17,13 +19,16 @@ namespace GameShop.Models
         public string Surname { get; set; }
         [Required(ErrorMessage = "Enter street")]
         [StringLength(100)]
-        public string Street { get; set; }
+        public string Address { get; set; }
         [Required(ErrorMessage = "Enter City")]
         [StringLength(100)]
         public string City { get; set; }
         [Required(ErrorMessage = "Enter post code")]
         [StringLength(6)]
-        public string PostCode { get; set; }
+        public string PostalCode { get; set; }
+        [Required(ErrorMessage = "Musisz podać numer telefonu")]
+        [StringLength(20)]
+        [RegularExpression(@"(\+\d{2})*[\d\s-]+", ErrorMessage = "Wrong format of phone number")]
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
         public string Comment { get; set; }

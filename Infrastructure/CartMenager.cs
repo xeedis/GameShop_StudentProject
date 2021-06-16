@@ -88,7 +88,7 @@ namespace GameShop.Infrastructure
         {
             var koszyk = DownloadCart();
             newOrder.DateAdded = DateTime.Now;
-            // newOrder.I = userId;
+            newOrder.UserId = userId;
             db.Orders.Add(newOrder);
 
             if (newOrder.OrderItems == null)
